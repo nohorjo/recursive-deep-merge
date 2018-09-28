@@ -1,0 +1,19 @@
+{
+  "name": "recursive-deep-merge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nohorjo/recursive-deep-merge.git"
+  },
+  "author": "Muhammed Haque",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nohorjo/recursive-deep-merge/issues"
+  },
+  "homepage": "https://github.com/nohorjo/recursive-deep-merge#readme"
+}
