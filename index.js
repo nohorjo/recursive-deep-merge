@@ -6,7 +6,7 @@ module.exports = function merge(first, second) {
 
     switch (second.constructor) {
         case Array:
-            second.forEach(step);
+            second.forEach((value, k) => step(value, k, true));
             break;
         case Object:
             Object.entries(second).forEach(([k, value]) => step(value, k));
@@ -14,17 +14,19 @@ module.exports = function merge(first, second) {
         default: throw 'Can only merge Objects or Arrays';
     }
     
-    function step(value, k) {
-        const existing = merged[k];
-        if (
-            existing
-            && value
-            && value.constructor == existing.constructor
-            && (value.constructor == Object || value.constructor == Array)
-        ) {
-            merged[k] = merge(existing, value);
-        } else {
-            merged[k] = value;
+    function step(value, k, isArrayElement = false) {
+        if (!isArrayElement || value !== undefined) {
+            const existing = merged[k];
+            if (
+                existing
+                && value
+                && value.constructor == existing.constructor
+                && (value.constructor == Object || value.constructor == Array)
+            ) {
+                merged[k] = merge(existing, value);
+            } else {
+                merged[k] = value;
+            }
         }
     }
 

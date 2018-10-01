@@ -41,6 +41,39 @@ describe('merge', () => {
 
         expect(merge(first, second)).to.deep.equal(expected);
     });
+    it('skips undefined array element', () => {
+        const first = [{a: 1}];
+        const second = [undefined, {b: 2}];
+        const expected = [
+            {a: 1},
+            {b: 2}
+        ];
+
+        expect(merge(first, second)).to.deep.equal(expected);
+    });
+    it('does not skip null array element', () => {
+        const first = [{a: 1}];
+        const second = [null, {b: 2}];
+        const expected = [
+            null,
+            {b: 2}
+        ];
+
+        expect(merge(first, second)).to.deep.equal(expected);
+    });
+    it('does not skip undefined object property', () => {
+        const first = {a: 1};
+        const second = {
+            a: undefined,
+            b: 2
+        };
+        const expected = {
+            a: undefined,
+            b: 2
+        };
+
+        expect(merge(first, second)).to.deep.equal(expected);
+    });
     it('deep merges', () => {
         const first = {
             a: 1,
